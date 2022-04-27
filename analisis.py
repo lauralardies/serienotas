@@ -56,3 +56,12 @@ dt3 = df["assignment3_grade"].std()
 dt4 = df["assignment4_grade"].std()
 dt5 = df["assignment5_grade"].std()
 dt6 = df["assignment6_grade"].std()
+
+# Por último, los cuartiles (.25, .5, .75)
+
+cuartiles1 = df["assignment1_grade"].quantile([.25, .5, .75])
+cuartiles2 = df["assignment2_grade"].quantile([.25, .5, .75])
+cuartiles3 = df["assignment3_grade"].quantile([.25, .5, .75])
+cuartiles4 = df["assignment4_grade"].quantile([.25, .5, .75])
+cuartiles5 = df["assignment5_grade"].quantile([.25, .5, .75])
+cuartiles6 = df["assignment6_grade"].quantile([.25, .5, .75])
