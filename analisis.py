@@ -74,8 +74,18 @@ print("\nCuartiles del Examen 1:\n" + str(cuartiles1) + "\nCuartiles del Examen 
 # ---- DATOS ABERRANTES ----
 
 # Calculamos las notas tipificadas : 
-z = np.abs(stats.zscore(df["Nota"]))
+z1 = np.abs(stats.zscore(df["assignment1_grade"]))
+z2 = np.abs(stats.zscore(df["assignment2_grade"]))
+z3 = np.abs(stats.zscore(df["assignment3_grade"]))
+z4 = np.abs(stats.zscore(df["assignment4_grade"]))
+z5 = np.abs(stats.zscore(df["assignment5_grade"]))
+z6 = np.abs(stats.zscore(df["assignment6_grade"]))
 
-# Identificamos los datos aberrantes, considerando como datos aberrantes aquellos cuyo valor tipificado es mayor que 1. 
+# Identificamos los datos aberrantes, considerando como datos aberrantes aquellos cuyo valor tipificado es mayor que 3. 
 # El siguiente print los indica en qué posición del DataFrame se encuentra cada dato aberrante. 
-print(np.where(z > 1))
+print("\nDatos aberrantes del Examen 1:\n" + str(np.where(z1 > 3)))
+print("\nDatos aberrantes del Examen 2:\n" + str(np.where(z2 > 3)))
+print("\nDatos aberrantes del Examen 3:\n" + str(np.where(z3 > 3)))
+print("\nDatos aberrantes del Examen 4:\n" + str(np.where(z4 > 3)))
+print("\nDatos aberrantes del Examen 5:\n" + str(np.where(z5 > 3)))
+print("\nDatos aberrantes del Examen 6:\n" + str(np.where(z6 > 3)))
