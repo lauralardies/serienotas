@@ -1,4 +1,6 @@
 import pandas as pd
+import numpy as np
+from scipy import stats
 
 # Creamos un DataFrame con Pandas a partir del archivo .csv
 df = pd.read_csv("grades.csv", ",")
@@ -68,3 +70,12 @@ cuartiles4 = df["assignment4_grade"].quantile([.25, .5, .75])
 cuartiles5 = df["assignment5_grade"].quantile([.25, .5, .75])
 cuartiles6 = df["assignment6_grade"].quantile([.25, .5, .75])
 print("\nCuartiles del Examen 1:\n" + str(cuartiles1) + "\nCuartiles del Examen 2:\n" + str(cuartiles2) + "\nCuartiles del Examen 3:\n" + str(cuartiles3) + "\nCuartiles del Examen 4:\n" + str(cuartiles5) + "\nCuartiles del Examen 5:\n" + str(cuartiles5) + "\nCuartiles del Examen 6:\n" + str(cuartiles6))
+
+# ---- DATOS ABERRANTES ----
+
+# Calculamos las notas tipificadas : 
+z = np.abs(stats.zscore(df["Nota"]))
+
+# Identificamos los datos aberrantes, considerando como datos aberrantes aquellos cuyo valor tipificado es mayor que 1. 
+# El siguiente print los indica en qué posición del DataFrame se encuentra cada dato aberrante. 
+print(np.where(z > 1))
