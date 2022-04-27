@@ -121,11 +121,11 @@ class EstadisticaNotas():
 
     # ---- VISUALIZACIÓN ----
 
-    def diagramas(self):
-        sns.boxplot(x = self.df["assignment1_grade"])
+    def diagramas(self, examen):
+        sns.boxplot(x = self.df[examen])
         plt.show()
 
-        sns.displot(self.df["assignment1_grade"], bins = 15, kde = False)
+        sns.displot(self.df[examen], bins = 15, kde = False)
         plt.show()
 
     def imprimir(self, index): # Por último, tenemos esta función que nos muestra lo que aparecerá en consola.
@@ -165,3 +165,6 @@ class EstadisticaNotas():
         print("\nD A T O S   A B E R R A N T E S\n")
         print("Los datos aberrantes del examen son\n- Por debajo : " + str(datos_aberrantes[0]) + "\n- Por encima : " + str(datos_aberrantes[1]))
         
+        print("\nV I S U A L I Z A C I Ó N\n")
+        print("Cargando diagramas ...")
+        self.diagramas(examen)
