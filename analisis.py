@@ -36,3 +36,14 @@ moda4 = df["assignment4_grade"].mode()
 moda5 = df["assignment5_grade"].mode()
 moda6 = df["assignment6_grade"].mode()
 print("\nModa Examen 1:\n " + str(moda1) + "\nModa Examen 2:\n" + str(moda2) + "\nModa Examen 3:\n" + str(moda3) + "\nModa Examen 4:\n" + str(moda5) + "\nModa Examen 5:\n" + str(moda5) + "\nModa Examen 6:\n" + str(moda6))
+
+# ---- ESTUDIO DE LA DISPERSIÓN ----
+
+# Primero calculamos la varianza de cada examen realizado por los alumnos.
+
+varianza1 = df["assignment1_grade"].var()
+varianza2 = df["assignment2_grade"].var()
+varianza3 = df["assignment3_grade"].var()
+varianza4 = df["assignment4_grade"].var()
+varianza5 = df["assignment5_grade"].var()
+varianza6 = df["assignment6_grade"].var()
