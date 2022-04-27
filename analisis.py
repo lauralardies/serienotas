@@ -16,3 +16,11 @@ media4 = df["assignment4_grade"].mean()
 media5 = df["assignment5_grade"].mean()
 media6 = df["assignment6_grade"].mean()
 
+# Ahora calculamos la mediana.
+
+mediana1 = df["assignment1_grade"].median()
+mediana2 = df["assignment2_grade"].median()
+mediana3 = df["assignment3_grade"].median()
+mediana4 = df["assignment4_grade"].median()
+mediana5 = df["assignment5_grade"].median()
+mediana6 = df["assignment6_grade"].median()
