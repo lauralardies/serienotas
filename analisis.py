@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from scipy import stats
+import matplotlib.pyplot as plt
 
 class EstadisticaNotas(): 
     # Creamos un DataFrame con Pandas a partir del archivo .csv
@@ -84,3 +85,34 @@ class EstadisticaNotas():
         print("\nDatos aberrantes del Examen 4:\n" + str(np.where(z4 > 3)))
         print("\nDatos aberrantes del Examen 5:\n" + str(np.where(z5 > 3)))
         print("\nDatos aberrantes del Examen 6:\n" + str(np.where(z6 > 3)))
+
+    def visualizar(self, media, mediana, cuartil_1, cuartil_2, cuartil_3): #Creamos una función que me ayude a visualizar los datos del dataset.
+        plt.subplot(2, 2, 1)
+        plt.hist(self.df)
+        plt.title("Histograma y media")
+        plt.axvline(media, color='red', linestyle='dashed', linewidth=1,label = str(media))
+        plt.legend(loc='upper right')
+
+        plt.subplot(2, 2, 2)
+        plt.hist(self.df)
+        plt.title("Histograma y mediana")
+        plt.axvline(mediana, color='green', linestyle='dashed', linewidth=1,label = str(mediana))
+        plt.legend(loc='upper right')
+
+        plt.subplot(2, 2, 3)
+        plt.hist(self.df)
+        plt.title("Histograma y cuartiles")
+        plt.axvline(cuartil_1, color='orange', linestyle='dashed', linewidth=1,label = "Q1: "+str(cuartil_1))
+        plt.axvline(cuartil_2, color='orange', linestyle='dashed', linewidth=1,label = "Q2: "+str(cuartil_2))
+        plt.axvline(cuartil_3, color='orange', linestyle='dashed', linewidth=1,label = "Q3: "+str(cuartil_3))
+        plt.legend(loc='upper right')
+
+        plt.subplot(2, 2, 4)
+        plt.boxplot(self.df)
+        plt.title("Diagrama de caja y bigotes")
+        plt.show()
+    
+    def imprimir(self): # Por último, tenemos esta función que nos muestra lo que aparecerá en consola.
+        n = len(self.df.index) # El número de notas que hay de cada examen
+        minimos = self.df.min() # El valor mínimo de cada examen
+        maximos = self.df.max() # El valor máximo de cada examen
