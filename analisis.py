@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 from scipy import stats
-import matplotlib.pyplot as plt
 
 class EstadisticaNotas(): 
     # Creamos un DataFrame con Pandas a partir del archivo .csv
@@ -11,14 +10,35 @@ class EstadisticaNotas():
 
     # ---- ESTUDIO DE LA TENDENCIA CENTRAL ----
 
-    def media(self): # Primero calculamos la media de cada uno de los exámenes.
+    def valor_min(self): # Determinamos la nota más baja de ese examen
+        min1 = self.df["assignment1_grade"].min()
+        min2 = self.df["assignment2_grade"].min()
+        min3 = self.df["assignment3_grade"].min()
+        min4 = self.df["assignment4_grade"].min()
+        min5 = self.df["assignment5_grade"].min()
+        min6 = self.df["assignment6_grade"].min()
+
+        return (min1, min2, min3, min4, min5, min6)
+
+    def valor_max(self): # Determinamos la nota más alta de ese examen
+        max1 = self.df["assignment1_grade"].max()
+        max2 = self.df["assignment2_grade"].max()
+        max3 = self.df["assignment3_grade"].max()
+        max4 = self.df["assignment4_grade"].max()
+        max5 = self.df["assignment5_grade"].max()
+        max6 = self.df["assignment6_grade"].max()
+
+        return (max1, max2, max3, max4, max5, max6)
+        
+    def media(self): # Calculamos la media de cada uno de los exámenes.
         media1 = self.df["assignment1_grade"].mean()
         media2 = self.df["assignment2_grade"].mean()
         media3 = self.df["assignment3_grade"].mean()
         media4 = self.df["assignment4_grade"].mean()
         media5 = self.df["assignment5_grade"].mean()
         media6 = self.df["assignment6_grade"].mean()
-        print("\nMedia Examen 1: " + str(media1) + "\nMedia Examen 2: " + str(media2) + "\nMedia Examen 3: " + str(media3) + "\nMedia Examen 4: " + str(media4) + "\nMedia Examen 5: " + str(media5) + "\nMedia Examen 6: " + str(media6))
+
+        return (media1, media2, media3, media4, media5, media6)
 
     def mediana(self): # Ahora calculamos la mediana.
         mediana1 = self.df["assignment1_grade"].median()
@@ -27,7 +47,8 @@ class EstadisticaNotas():
         mediana4 = self.df["assignment4_grade"].median()
         mediana5 = self.df["assignment5_grade"].median()
         mediana6 = self.df["assignment6_grade"].median()
-        print("\nMediana Examen 1: " + str(mediana1) + "\nMediana Examen 2: " + str(mediana2) + "\nMediana Examen 3: " + str(mediana3) + "\nMediana Examen 4: " + str(mediana4) + "\nMediana Examen 5: " + str(mediana5) + "\nMediana Examen 6: " + str(mediana6))
+
+        return (mediana1, mediana2, mediana3, mediana4, mediana5, mediana6)
 
     def moda(self): # Por último, la(s) moda(s).
         moda1 = self.df["assignment1_grade"].mode()
@@ -36,7 +57,8 @@ class EstadisticaNotas():
         moda4 = self.df["assignment4_grade"].mode()
         moda5 = self.df["assignment5_grade"].mode()
         moda6 = self.df["assignment6_grade"].mode()
-        print("\nModa Examen 1:\n" + str(moda1) + "\nModa Examen 2:\n" + str(moda2) + "\nModa Examen 3:\n" + str(moda3) + "\nModa Examen 4:\n" + str(moda4) + "\nModa Examen 5:\n" + str(moda5) + "\nModa Examen 6:\n" + str(moda6))
+
+        return (moda1, moda2, moda3, moda4, moda5, moda6)
 
     # ---- ESTUDIO DE LA DISPERSIÓN ----
 
@@ -47,7 +69,8 @@ class EstadisticaNotas():
         varianza4 = self.df["assignment4_grade"].var()
         varianza5 = self.df["assignment5_grade"].var()
         varianza6 = self.df["assignment6_grade"].var()
-        print("\nvarianza Examen 1: " + str(varianza1) + "\nVarianza Examen 2: " + str(varianza2) + "\nVarianza Examen 3: " + str(varianza3) + "\nVarianza Examen 4: " + str(varianza4) + "\nVarianza Examen 5: " + str(varianza5) + "\nVarianza Examen 6: " + str(varianza6))
+
+        return (varianza1, varianza2, varianza3, varianza4, varianza5, varianza6)
 
     def desviacion_tipica(self): # Ahora determinamos el valor de la desviación típica para cada examen
         dt1 = self.df["assignment1_grade"].std()
@@ -56,7 +79,8 @@ class EstadisticaNotas():
         dt4 = self.df["assignment4_grade"].std()
         dt5 = self.df["assignment5_grade"].std()
         dt6 = self.df["assignment6_grade"].std()
-        print("\nDesviación Típica Examen 1: " + str(dt1) + "\nDesviación Típica Examen 2: " + str(dt2) + "\nDesviación Típica Examen 3: " + str(dt3) + "\nDesviación Típica Examen 4: " + str(dt4) + "\nDesviación Típica Examen 5: " + str(dt5) + "\nDesviación Típica Examen 6: " + str(dt6))
+
+        return (dt1, dt2, dt3, dt4, dt5, dt6)
 
     def cuartil(self): # Por último, los cuartiles (.25, .5, .75)
         cuartiles1 = self.df["assignment1_grade"].quantile([.25, .5, .75])
@@ -65,7 +89,8 @@ class EstadisticaNotas():
         cuartiles4 = self.df["assignment4_grade"].quantile([.25, .5, .75])
         cuartiles5 = self.df["assignment5_grade"].quantile([.25, .5, .75])
         cuartiles6 = self.df["assignment6_grade"].quantile([.25, .5, .75])
-        print("\nCuartiles del Examen 1:\n" + str(cuartiles1) + "\nCuartiles del Examen 2:\n" + str(cuartiles2) + "\nCuartiles del Examen 3:\n" + str(cuartiles3) + "\nCuartiles del Examen 4:\n" + str(cuartiles4) + "\nCuartiles del Examen 5:\n" + str(cuartiles5) + "\nCuartiles del Examen 6:\n" + str(cuartiles6))
+
+        return (cuartiles1, cuartiles2, cuartiles3, cuartiles4, cuartiles5, cuartiles6)
 
     # ---- DATOS ABERRANTES ----
 
@@ -79,40 +104,50 @@ class EstadisticaNotas():
 
         # Identificamos los datos aberrantes, considerando como datos aberrantes aquellos cuyo valor tipificado es mayor que 3. 
         # El siguiente print los indica en qué posición del DataFrame se encuentra cada dato aberrante. 
-        print("\nDatos aberrantes del Examen 1:\n" + str(np.where(z1 > 3)))
-        print("\nDatos aberrantes del Examen 2:\n" + str(np.where(z2 > 3)))
-        print("\nDatos aberrantes del Examen 3:\n" + str(np.where(z3 > 3)))
-        print("\nDatos aberrantes del Examen 4:\n" + str(np.where(z4 > 3)))
-        print("\nDatos aberrantes del Examen 5:\n" + str(np.where(z5 > 3)))
-        print("\nDatos aberrantes del Examen 6:\n" + str(np.where(z6 > 3)))
 
-    def visualizar(self, media, mediana, cuartil_1, cuartil_2, cuartil_3): #Creamos una función que me ayude a visualizar los datos del dataset.
-        plt.subplot(2, 2, 1)
-        plt.hist(self.df)
-        plt.title("Histograma y media")
-        plt.axvline(media, color='red', linestyle='dashed', linewidth=1,label = str(media))
-        plt.legend(loc='upper right')
+        indices1 = np.where(z1 > 3)
+        indices2 = np.where(z2 > 3)
+        indices3 = np.where(z3 > 3)
+        indices4 = np.where(z4 > 3)
+        indices5 = np.where(z5 > 3)
+        indices6 = np.where(z6 > 3)
 
-        plt.subplot(2, 2, 2)
-        plt.hist(self.df)
-        plt.title("Histograma y mediana")
-        plt.axvline(mediana, color='green', linestyle='dashed', linewidth=1,label = str(mediana))
-        plt.legend(loc='upper right')
+        return (indices1, indices2, indices3, indices4, indices5, indices6)
 
-        plt.subplot(2, 2, 3)
-        plt.hist(self.df)
-        plt.title("Histograma y cuartiles")
-        plt.axvline(cuartil_1, color='orange', linestyle='dashed', linewidth=1,label = "Q1: "+str(cuartil_1))
-        plt.axvline(cuartil_2, color='orange', linestyle='dashed', linewidth=1,label = "Q2: "+str(cuartil_2))
-        plt.axvline(cuartil_3, color='orange', linestyle='dashed', linewidth=1,label = "Q3: "+str(cuartil_3))
-        plt.legend(loc='upper right')
+    # ---- VISUALIZACIÓN ----
 
-        plt.subplot(2, 2, 4)
-        plt.boxplot(self.df)
-        plt.title("Diagrama de caja y bigotes")
-        plt.show()
-    
-    def imprimir(self): # Por último, tenemos esta función que nos muestra lo que aparecerá en consola.
+    def imprimir(self, index): # Por último, tenemos esta función que nos muestra lo que aparecerá en consola.
+
+        # Primero definimos las variables y luego creamos los print
         n = len(self.df.index) # El número de notas que hay de cada examen
-        minimos = self.df.min() # El valor mínimo de cada examen
-        maximos = self.df.max() # El valor máximo de cada examen
+        index = index
+        minimos = self.valor_min() # El valor mínimo de cada examen
+        maximos = self.valor_max() # El valor máximo de cada examen
+        media = self.media() # Las medias que hemos definido en la función media()
+        mediana = self.mediana() # Las medianas que hemos definido en la función mediana()
+        moda = self.moda() # La(s) moda(s) que se han generado en la función moda()
+        varianza = self.var() # La varianza que hemos calculado en la función var()
+        desviacion_tipica = self.desviacion_tipica() # La desviación típica definida en la función desviacion_tipica()
+        cuartil = self.cuartil() # Los cuartiles que hemos definido en la función cuartil()
+        datos_aberrantes = self.datos_aberrantes() # Los datos que están fuera de lo normal
+
+        print("\nE S T U D I O   D E   L A   T E N D E N C I A   C E N T R A L\n")
+
+        print("En total, tenemos una cantidad de " + str(n) + " alumnos que han realizado estos exámenes.\n")
+        print("La nota más baja de este examen ha sido un " + str(minimos[index]) + ".\n")
+        print("La nota más alta de este examen ha sido un " + str(maximos[index]) + ".\n")
+        print("La media de este examen ha sido de " + str(media[index]) + ".\n")
+        print("La mediana de este examen ha sido de " + str(mediana[index]) + ".\n")
+        print("La(s) moda(s) de este examen ha(n) sido\n" + str(moda[index]))
+
+        print("\nE S T U D I O   D E   L A   D I S P E R S I Ó N\n")
+
+        print("La varianza de este examen es de " + str(varianza[index]) + ".\n")
+        print("La desviación típica de el examen es de " + str(desviacion_tipica[index]) + ".\n")
+        print("25 % de las notas tienen un valor inferior a " + str(cuartil[index].iat[0]))
+        print("50 % de las notas tienen un valor inferior a " + str(cuartil[index].iat[1]))
+        print("75 % de las notas tienen un valor inferior a " + str(cuartil[index].iat[2]))
+
+        print("\nD A T O S   A B E R R A N T E S\n")
+
+        print("Los datos aberrantes del examen son : \n" + str(datos_aberrantes[index]) + ".\n")
