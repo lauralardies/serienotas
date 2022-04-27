@@ -102,10 +102,22 @@ class EstadisticaNotas():
         lim_min = cuartil1 - 1.5 * intercuartil
         lim_max = cuartil1 + 1.5 * intercuartil
 
+        # Estos dos tipos de datos aberrantes nos crea un DataFrame de True o False
         datos_aberrantes_min = (self.df[examen] < lim_min)
         datos_aberrantes_max = (self.df[examen] > lim_max)
 
-        return (datos_aberrantes_min, datos_aberrantes_max)
+        outliers_min = []
+        outliers_max = []
+
+        for i in range (len(datos_aberrantes_min)):
+            if datos_aberrantes_min[i] == True:
+                outliers_min.append(self.df.iloc[i][examen])
+
+        for i in range (len(datos_aberrantes_max)):
+            if datos_aberrantes_max[i] == True:
+                outliers_max.append(self.df.iloc[i][examen])
+
+        return (outliers_min, outliers_max)
 
     # ---- VISUALIZACIÓN ----
 
@@ -131,6 +143,7 @@ class EstadisticaNotas():
         desviacion_tipica = self.desviacion_tipica() # La desviación típica definida en la función desviacion_tipica()
         cuartil = self.cuartil() # Los cuartiles que hemos definido en la función cuartil()
         datos_aberrantes = self.datos_aberrantes(cuartil[index].iat[0], cuartil[index].iat[2], examen) # Los datos que están fuera de lo normal
+    
 
         print("\nE S T U D I O   D E   L A   T E N D E N C I A   C E N T R A L\n")
 
@@ -150,5 +163,5 @@ class EstadisticaNotas():
         print("75 % de las notas tienen un valor inferior a " + str(cuartil[index].iat[2]))
 
         print("\nD A T O S   A B E R R A N T E S\n")
-        print("Los datos aberrantes del examen son\n- Por debajo : " + str(datos_aberrantes[0]) + "- Por encima : " + str(datos_aberrantes[1]))
+        print("Los datos aberrantes del examen son\n- Por debajo : " + str(datos_aberrantes[0]) + "\n- Por encima : " + str(datos_aberrantes[1]))
         

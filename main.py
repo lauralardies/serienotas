@@ -25,6 +25,4 @@ while True:
     else:
         print("Inténtalo de nuevo, recuerda que sólo necesitamos que introduzcas el número del examen que quieres ver y que sólo tenemos 6 exámenes calificados.")
 
-#analisis.datos_aberrantes()
-
 analisis.imprimir(index)
