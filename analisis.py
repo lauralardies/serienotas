@@ -15,6 +15,7 @@ media3 = df["assignment3_grade"].mean()
 media4 = df["assignment4_grade"].mean()
 media5 = df["assignment5_grade"].mean()
 media6 = df["assignment6_grade"].mean()
+print("\nMedia Examen 1: " + str(media1) + "\nMedia Examen 2: " + str(media2) + "\nMedia Examen 3: " + str(media3) + "\nMedia Examen 4: " + str(media5) + "\nMedia Examen 5: " + str(media5) + "\nMedia Examen 6: " + str(media6))
 
 # Ahora calculamos la mediana.
 
@@ -24,6 +25,7 @@ mediana3 = df["assignment3_grade"].median()
 mediana4 = df["assignment4_grade"].median()
 mediana5 = df["assignment5_grade"].median()
 mediana6 = df["assignment6_grade"].median()
+print("\nMediana Examen 1: " + str(mediana1) + "\nMediana Examen 2: " + str(mediana2) + "\nMediana Examen 3: " + str(mediana3) + "\nMediana Examen 4: " + str(mediana5) + "\nMediana Examen 5: " + str(mediana5) + "\nMediana Examen 6: " + str(mediana6))
 
 # Por último, la(s) moda(s).
 
@@ -33,3 +35,4 @@ moda3 = df["assignment3_grade"].mode()
 moda4 = df["assignment4_grade"].mode()
 moda5 = df["assignment5_grade"].mode()
 moda6 = df["assignment6_grade"].mode()
+print("\nModa Examen 1:\n " + str(moda1) + "\nModa Examen 2:\n" + str(moda2) + "\nModa Examen 3:\n" + str(moda3) + "\nModa Examen 4:\n" + str(moda5) + "\nModa Examen 5:\n" + str(moda5) + "\nModa Examen 6:\n" + str(moda6))
