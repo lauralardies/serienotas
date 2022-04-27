@@ -47,3 +47,12 @@ varianza3 = df["assignment3_grade"].var()
 varianza4 = df["assignment4_grade"].var()
 varianza5 = df["assignment5_grade"].var()
 varianza6 = df["assignment6_grade"].var()
+
+# Ahora determinamos el valor de la desviación típica para cada examen
+
+dt1 = df["assignment1_grade"].std()
+dt2 = df["assignment2_grade"].std()
+dt3 = df["assignment3_grade"].std()
+dt4 = df["assignment4_grade"].std()
+dt5 = df["assignment5_grade"].std()
+dt6 = df["assignment6_grade"].std()
