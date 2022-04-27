@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
 from scipy import stats
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 class EstadisticaNotas(): 
     # Creamos un DataFrame con Pandas a partir del archivo .csv
@@ -94,33 +96,32 @@ class EstadisticaNotas():
 
     # ---- DATOS ABERRANTES ----
 
-    def datos_aberrantes(self): # Calculamos las notas tipificadas : 
-        z1 = np.abs(stats.zscore(self.df["assignment1_grade"]))
-        z2 = np.abs(stats.zscore(self.df["assignment2_grade"]))
-        z3 = np.abs(stats.zscore(self.df["assignment3_grade"]))
-        z4 = np.abs(stats.zscore(self.df["assignment4_grade"]))
-        z5 = np.abs(stats.zscore(self.df["assignment5_grade"]))
-        z6 = np.abs(stats.zscore(self.df["assignment6_grade"]))
+    def datos_aberrantes(self, cuartil1, cuartil3, examen): # Calculamos las notas tipificadas : 
+        intercuartil = cuartil3 - cuartil1
 
-        # Identificamos los datos aberrantes, considerando como datos aberrantes aquellos cuyo valor tipificado es mayor que 3. 
-        # El siguiente print los indica en qué posición del DataFrame se encuentra cada dato aberrante. 
+        lim_min = cuartil1 - 1.5 * intercuartil
+        lim_max = cuartil1 + 1.5 * intercuartil
 
-        indices1 = np.where(z1 > 3)
-        indices2 = np.where(z2 > 3)
-        indices3 = np.where(z3 > 3)
-        indices4 = np.where(z4 > 3)
-        indices5 = np.where(z5 > 3)
-        indices6 = np.where(z6 > 3)
+        datos_aberrantes_min = (self.df[examen] < lim_min)
+        datos_aberrantes_max = (self.df[examen] > lim_max)
 
-        return (indices1, indices2, indices3, indices4, indices5, indices6)
+        return (datos_aberrantes_min, datos_aberrantes_max)
 
     # ---- VISUALIZACIÓN ----
+
+    def diagramas(self):
+        sns.boxplot(x = self.df["assignment1_grade"])
+        plt.show()
+
+        sns.displot(self.df["assignment1_grade"], bins = 15, kde = False)
+        plt.show()
 
     def imprimir(self, index): # Por último, tenemos esta función que nos muestra lo que aparecerá en consola.
 
         # Primero definimos las variables y luego creamos los print
-        n = len(self.df.index) # El número de notas que hay de cada examen
         index = index
+        examen = "assignment" + str(index + 1) + "_grade"
+        n = len(self.df.index) # El número de notas que hay de cada examen
         minimos = self.valor_min() # El valor mínimo de cada examen
         maximos = self.valor_max() # El valor máximo de cada examen
         media = self.media() # Las medias que hemos definido en la función media()
@@ -129,7 +130,7 @@ class EstadisticaNotas():
         varianza = self.var() # La varianza que hemos calculado en la función var()
         desviacion_tipica = self.desviacion_tipica() # La desviación típica definida en la función desviacion_tipica()
         cuartil = self.cuartil() # Los cuartiles que hemos definido en la función cuartil()
-        datos_aberrantes = self.datos_aberrantes() # Los datos que están fuera de lo normal
+        datos_aberrantes = self.datos_aberrantes(cuartil[index].iat[0], cuartil[index].iat[2], examen) # Los datos que están fuera de lo normal
 
         print("\nE S T U D I O   D E   L A   T E N D E N C I A   C E N T R A L\n")
 
@@ -149,5 +150,5 @@ class EstadisticaNotas():
         print("75 % de las notas tienen un valor inferior a " + str(cuartil[index].iat[2]))
 
         print("\nD A T O S   A B E R R A N T E S\n")
-
-        print("Los datos aberrantes del examen son : \n" + str(datos_aberrantes[index]) + ".\n")
+        print("Los datos aberrantes del examen son\n- Por debajo : " + str(datos_aberrantes[0]) + "- Por encima : " + str(datos_aberrantes[1]))
+        
