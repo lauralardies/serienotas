@@ -24,3 +24,12 @@ mediana3 = df["assignment3_grade"].median()
 mediana4 = df["assignment4_grade"].median()
 mediana5 = df["assignment5_grade"].median()
 mediana6 = df["assignment6_grade"].median()
+
+# Por último, la(s) moda(s).
+
+moda1 = df["assignment1_grade"].mode()
+moda2 = df["assignment2_grade"].mode()
+moda3 = df["assignment3_grade"].mode()
+moda4 = df["assignment4_grade"].mode()
+moda5 = df["assignment5_grade"].mode()
+moda6 = df["assignment6_grade"].mode()
